@@ -12,11 +12,9 @@ class UserController extends Controller
      *
      * @return Response
      */
-    public function debug()
+    public function index()
     {
         //
-        $results = User::find(1)->client;
-        dd($results);
     }
 
     /**

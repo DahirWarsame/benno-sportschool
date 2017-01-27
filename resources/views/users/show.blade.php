@@ -1,9 +1,4 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>User {{ $user->user_id }}</title>
-  </head>
-  <body>
+<div>
     <h1>User {{ $user->username }}</h1>
     <ul>
       <li>First Name: {{ $client->name }}</li>
@@ -15,5 +10,4 @@
       <li></li>
       <li>Rol: {{ $rol->rol_description }}</li>
     </ul>
-  </body>
-</html>
+</div>
