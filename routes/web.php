@@ -11,6 +11,6 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('controlpanel/all_users', ['as' => 'user.profiles', 'uses' => 'UserController@showAll']);
+Route::get('controlpanel/all_users/{username}', ['as' => 'user.profile', 'uses' => 'UserController@getProfile']);
+Route::get('user/debug', ['as' => 'user.tests', 'uses' => 'UserController@debug']);
