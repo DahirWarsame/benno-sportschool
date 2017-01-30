@@ -10,13 +10,13 @@ class User extends Model
     protected $primaryKey = 'user_id';
     public $timestamps = false;
 
-    public function rol()
+    public function role()
     {
-        return $this->belongsTo('App\Rol', 'rol_id');
+        return $this->belongsTo('App\Role', 'role_id');
     }
 
     public function client()
     {
-        return $this->belongsTo('App\client', 'client_id');
+        return $this->belongsTo('App\Client', 'client_id');
     }
 }

@@ -14,81 +14,30 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return Response
-     */
-    public function create()
+    public function cpHome()
     {
-        //
+        return view('controlpanel.home');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @return Response
-     */
-    public function store()
+    public function userHome()
     {
-        //
+        return view('users.home');
     }
-
 
     public function showAll(){
     	$users = User::all();
     	return view('controlpanel.allusers', array('users' => $users));
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return Response
-     */
     public function getProfile($username)
     {
-        $user = User::where('username',$username) -> first();
-        $rol = User::find($user->rol_id)->rol;
-        $client = User::find($user->client_id)->client;
-
-    	return view('controlpanel.show', array('user' => $user, 'rol' => $rol, 'client' => $client));
+        $user = \App\User::with(['role','client'])->where('username',$username)->first();
+        return view('controlpanel.userprofile', array('user' => $user, 'rol' => $user->role, 'client' => $user->client));
 
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function edit($id)
-    {
-        
-    }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function update($id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function destroy($id)
-    {
-        //
-    }	
 }
