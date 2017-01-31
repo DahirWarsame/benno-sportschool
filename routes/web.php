@@ -27,4 +27,6 @@ Route::get('/controlpanel', ['as' => 'controlpanel', 'uses' => 'UserController@c
 Route::get('/controlpanel/all_users', ['as' => 'controlpanel.allusers', 'uses' => 'UserController@showAll']);
 Route::get('/controlpanel/all_users/{username}', ['as' => 'controlpanel.userprofile', 'uses' => 'UserController@getProfile']);
 
-//Route::get('user/debug', ['as' => 'user.tests', 'uses' => 'UserController@debug']);
+Auth::routes();
+
+Route::get('/home', 'HomeController@index');
