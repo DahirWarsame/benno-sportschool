@@ -1,6 +1,6 @@
 <!-- /container -->
 
-@extends('layout.main')
+@extends('layout.app')
 
 @section('title', 'Registreer')
 

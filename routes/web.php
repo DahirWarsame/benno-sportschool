@@ -13,20 +13,13 @@
 
 //Main
 Route::get('/', ['as' => 'home', 'uses' => 'HomeController@index']);
-Route::get('/login', ['as' => 'home.login', 'uses' => 'HomeController@login']);
-Route::get('/register', ['as' => 'home.register', 'uses' => 'HomeController@register']);
 
-
-//User
-Route::get('/user', ['as' => 'user', 'uses' => 'UserController@userHome']);
-Route::get('/user/{username}', ['as' => 'user.userprofile', 'uses' => 'UserController@getProfile']);
-
-
-//Controlpanel
-Route::get('/controlpanel', ['as' => 'controlpanel', 'uses' => 'UserController@cpHome']);
-Route::get('/controlpanel/all_users', ['as' => 'controlpanel.allusers', 'uses' => 'UserController@showAll']);
-Route::get('/controlpanel/all_users/{username}', ['as' => 'controlpanel.userprofile', 'uses' => 'UserController@getProfile']);
+////User
+Route::get('/user', ['as' => 'user.home', 'uses' => 'UserController@userHome']);
+Route::get('/user/all', ['as' => 'user.allusers', 'uses' => 'UserController@showAll']);
+Route::get('/user/all/{username}', ['as' => 'user.userprofile', 'uses' => 'UserController@getProfile']);
+Route::get('/user/controlpanel', ['as' => 'user.controlpanel', 'uses' => 'UserController@cpHome']);
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index');
+Route::get('/home', 'HomeController@home');
