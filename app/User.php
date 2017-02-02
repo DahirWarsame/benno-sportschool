@@ -11,7 +11,7 @@ class User extends \Eloquent implements Authenticatable
     //
     protected $primaryKey = 'user_id';
     public $timestamps = false;
-    protected $fillable = ['username', 'password'];
+    protected $fillable = ['username', 'password', 'client_id'];
     public function role()
     {
         return $this->belongsTo('App\Role', 'role_id');

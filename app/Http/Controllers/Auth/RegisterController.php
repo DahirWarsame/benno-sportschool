@@ -66,7 +66,9 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         //dd($data);
-        Client::create([
+
+
+        $client = Client::create([
             'name' => $data['name'],
             'tussenvoegsel' => $data['prefix'],
             'lastname' => $data['lastname'],
@@ -74,9 +76,11 @@ class RegisterController extends Controller
             'city' => $data['city'],
             'IBAN_number' => $data['accountnumber'],
         ]);
-        return User::create([
+        $user = User::create([
             'username' => $data['username'],
             'password' => $data['password'],
+            'client_id' => $client->client_id,
         ]);
+        return $user;
     }
 }

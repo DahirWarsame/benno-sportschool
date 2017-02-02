@@ -43,13 +43,5 @@ class UserController extends Controller
         return view('controlpanel.userprofile', array('user' => $user, 'rol' => $user->role, 'client' => $user->client));
 
     }
-//    public function getActiveUsers()
-//    {
-//        $user = \App\User::with(['role','client'])->where('client.active',1);
-//
-//        return view('userprofile', array('user' => $user, 'rol' => $user->role, 'client' => $user->client));
-//
-//    }
-
 
 }
