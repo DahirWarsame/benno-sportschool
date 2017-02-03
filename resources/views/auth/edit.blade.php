@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading">Register</div>
+                <div class="panel-heading">Edit</div>
                 <div class="panel-body">
                     <form class="form-horizontal" role="form" method="POST" action="{{route('user.update') }}">
                         {{ csrf_field() }}
@@ -94,8 +94,8 @@
                             <label for="username" class="col-md-4 control-label">Username</label>
 
                             <div class="col-md-6">
-                                <input id="username" type="text" class="form-control" name="username" value="{{ $user->username }}" disabled >
-
+                                <input id="username" type="hidden" class="form-control" name="username" value="{{ $user->username }}" >
+                                {{ $user->username }}
                                 @if ($errors->has('username'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('username') }}</strong>

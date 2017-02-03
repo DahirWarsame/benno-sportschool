@@ -5,6 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
@@ -18,7 +20,11 @@
     <link rel="stylesheet" type="text/css" href="{{ URL::asset('css/main.css') }}">
 
     <!-- Scripts -->
-
+    <script>
+        window.Laravel = {!! json_encode([
+            'csrfToken' => csrf_token(),
+        ]) !!};
+    </script>
     <style>
         .carousel-inner img {
             width: 100%; /* Set width to 100% */
@@ -69,13 +75,19 @@
                         @else
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                    {{ Auth::user()->name }} <span class="caret"></span>
+                                    {{ Auth::user()->username }} <span class="caret"></span>
                                 </a>
 
                                 <ul class="dropdown-menu" role="menu">
+                                    @if (Auth::user()->role == 'klant')
+                                        <li><a href="{{ URL::route('user.userprofile', Auth::user()->username) }}">Mijn Profiel</a></li>
+                                    @elseif(Auth::user()->role == 'admin' || Auth::user()->role == 'medewerker')
+                                        <li><a href="{{ URL::route('user.allusers') }}">Alle gebruikers</a></li>
+                                    @endif
+                                    <li class="info"><a href="mailto:advies@bennos-sportschool.nl">Advies</a></li>
                                     <li>
                                         <a href="{{ url('/logout') }}"
-                                            onclick="event.preventDefault();
+                                           onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                             Logout
                                         </a>

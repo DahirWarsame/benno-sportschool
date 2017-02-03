@@ -14,7 +14,7 @@ class UserController extends Controller
 
     public function __construct()
     {
-        $this->middleware('guest');
+        $this->middleware('auth');
     }
 
     protected function validator(array $data)
@@ -34,6 +34,10 @@ class UserController extends Controller
 
         }
     }
+    public function logout()
+    {
+        Auth::logout();
+    }
     public function index()
     {
         //dd(Hash::make('test'));
@@ -52,7 +56,6 @@ class UserController extends Controller
     public function update(Request $request)
     {
         $uri = $request->all();
-
         $username       = $uri['username'];
         $name           = $uri['name'];
         $prefix         = $uri['prefix'];

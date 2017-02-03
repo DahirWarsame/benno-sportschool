@@ -1,4 +1,4 @@
-@extends('layouts.user')
+@extends('layouts.app')
 
 @section('title', 'User Profile')
 
@@ -23,7 +23,6 @@
                                     <tr>
                                         <th>ID</th>
                                         <th>Name</th>
-                                        <th>Prefix</th>
                                         <th>Lastname</th>
                                         <th>Address</th>
                                         <th>City</th>
@@ -35,8 +34,7 @@
                                     <tbody>
                                     <tr>
                                         <td data-title="ID">{{ $user->user_id }}</td>
-                                        <td data-title="Name">{{ ucfirst($client->name) }}</td>
-                                        <td data-title="Prefix">{{ ucfirst($client->tussenvoegsel) }}</td>
+                                        <td data-title="Name">{{ ucfirst($client->name)." ".ucfirst($client->tussenvoegsel) }}</td>
                                         <td data-title="Lastname">{{ ucfirst($client->lastname) }}</td>
                                         <td data-title="Address">{{ ucfirst($client->address) }}</td>
                                         <td data-title="City">{{ ucfirst($client->city) }}</td>
@@ -58,7 +56,8 @@
                                     <tr>
                                         <th>Apparaat</th>
                                         <th>Tijdsduur</th>
-                                        <th>Snelheid</th>
+                                        <th>Snelheid/Sets</th>
+                                        <th>Afstand</th>
                                         <th>Gewicht</th>
                                         <th>Calr verbrand </th>
                                     </tr>
@@ -68,9 +67,10 @@
                                         <tr>
                                             <td data-title="ID">{{ ucfirst($data->device_name) }}</td>
                                             <td data-title="Tijdsduur">{{ ($data->duration) }}</td>
-                                            <td data-title="Snelheid">{{ ($data->speed) }}</td>
-                                            <td data-title="Gewicht">{{ ($data->weight) ? $data->weight : 'NVT' }}</td>
-                                            <td data-title="Calr verbrand">{{ ($data->total_sec * $data->calr_burned) }}</td>
+                                            <td data-title="Snelheid">{{ isset($data->speed) ? $data->speed : 'NVT' }}</td>
+                                            <td data-title="Afstand">{{ isset($data->km) ? $data->km : 'NVT' }}</td>
+                                            <td data-title="Gewicht">{{ isset($data->weight) ? $data->weight : 'NVT' }}</td>
+                                            <td data-title="Calr verbrand">{{ ($data->total_sec * (($data->speed * $data->calr_burned))) }}</td>
                                         </tr>
                                     @endforeach
                                     </tbody>

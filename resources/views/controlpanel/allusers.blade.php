@@ -1,4 +1,4 @@
-@extends('layouts.user')
+@extends('layouts.app')
 
 @section('title', 'All Users')
 
@@ -24,7 +24,9 @@
                                         <th>ID</th>
                                         <th>Username</th>
                                         <th>Profiel</th>
-                                        <th>Verwijder</th>
+                                        @if (Auth::user()->role == 'admin')
+                                            <th>Verwijder</th>
+                                         @endif
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -33,13 +35,17 @@
                                             <td data-title="ID">{{ $user->user_id }}</td>
                                             <td data-title="Username">{{ ucfirst($user->username) }}</td>
                                             <td data-title="Link">
-                                                <a href="{{ URL::route('user.userprofile', [$user->username]) }}" ><span class="glyphicon glyphicon-user" aria-hidden="true"></span></a>
-                                            </td>
-                                            <td data-title="Verwijder">
-                                                <a href="{{ URL::route('user.delete', [$user->username]) }}" >
-                                                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                                                <a href="{{ URL::route('user.userprofile', [$user->username]) }}" >
+                                                    <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
                                                 </a>
                                             </td>
+                                            @if (Auth::user()->role == 'admin')
+                                                <td data-title="Verwijder">
+                                                    <a href="{{ URL::route('user.delete', [$user->username]) }}" >
+                                                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                                                    </a>
+                                                </td>
+                                            @endif
                                         </tr>
                                     @endforeach
                                     </tbody>

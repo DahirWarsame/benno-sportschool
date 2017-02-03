@@ -60,7 +60,7 @@
                     <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-right">
                         <!-- Authentication Links -->
-                        {{--<li><a href="{{ URL::route('user.home') }}">Profiel</a></li>--}}
+                        <li><a href="{{ URL::route('user.profile') }}">Mijn Profiel</a></li>
                         <li><a href="{{ URL::route('user.allusers') }}">Alle gebruikers</a></li>
                         <li class="info"><a href="mailto:advies@bennos-sportschool.nl">Advies</a></li>
                         <li><a href="{{ url('/logout') }}">Logout</a></li>
