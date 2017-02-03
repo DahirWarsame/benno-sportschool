@@ -7,6 +7,7 @@ use App\Client;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Support\Facades\Hash;
 
 class RegisterController extends Controller
 {
@@ -78,7 +79,7 @@ class RegisterController extends Controller
         ]);
         $user = User::create([
             'username' => $data['username'],
-            'password' => $data['password'],
+            'password' => Hash::make($data['password']),
             'client_id' => $client->client_id,
         ]);
         return $user;

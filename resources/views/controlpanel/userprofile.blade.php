@@ -12,7 +12,7 @@
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default">
-                    <div class="panel-heading">User {{ $user->username }}</div>
+                    <div class="panel-heading">User {{ ucfirst($client->name)." ".ucfirst($client->lastname) }}</div>
 
                     <div class="panel-body">
                         <div id="profile">
@@ -29,6 +29,7 @@
                                         <th>City</th>
                                         <th>Created</th>
                                         <th>Rol</th>
+                                        <th>Wijzigen</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -41,7 +42,37 @@
                                         <td data-title="City">{{ ucfirst($client->city) }}</td>
                                         <td data-title="Created">{{ ucfirst($client->date) }}</td>
                                         <td data-title="Rol">{{ ucfirst($rol) }}</td>
+                                        <td data-title="Wijzigen">
+                                            <a href="{{ URL::route('user.edit', [$user->username]) }}" >
+                                                <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+                                            </a>
+                                        </td>
                                     </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="table-responsive-vertical shadow-z-1">
+                                <!-- Table starts here -->
+                                <table id="table" class="table table-hover table-mc-light-blue">
+                                    <thead>
+                                    <tr>
+                                        <th>Apparaat</th>
+                                        <th>Tijdsduur</th>
+                                        <th>Snelheid</th>
+                                        <th>Gewicht</th>
+                                        <th>Calr verbrand </th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    @foreach ($sportdata as $data)
+                                        <tr>
+                                            <td data-title="ID">{{ ucfirst($data->device_name) }}</td>
+                                            <td data-title="Tijdsduur">{{ ($data->duration) }}</td>
+                                            <td data-title="Snelheid">{{ ($data->speed) }}</td>
+                                            <td data-title="Gewicht">{{ ($data->weight) ? $data->weight : 'NVT' }}</td>
+                                            <td data-title="Calr verbrand">{{ ($data->total_sec * $data->calr_burned) }}</td>
+                                        </tr>
+                                    @endforeach
                                     </tbody>
                                 </table>
                             </div>

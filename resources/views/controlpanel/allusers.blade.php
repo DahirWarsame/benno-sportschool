@@ -22,17 +22,23 @@
                                     <thead>
                                     <tr>
                                         <th>ID</th>
-                                        <th>Name</th>
-                                        <th>Link</th>
+                                        <th>Username</th>
+                                        <th>Profiel</th>
+                                        <th>Verwijder</th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     @foreach ($users as $user)
                                         <tr>
                                             <td data-title="ID">{{ $user->user_id }}</td>
-                                            <td data-title="Name">{{ ucfirst($user->email) }}</td>
+                                            <td data-title="Username">{{ ucfirst($user->username) }}</td>
                                             <td data-title="Link">
-                                                <a href="{{ URL::route('user.userprofile', [$user->username]) }}" >{{ $user->username }}'s profile</a>
+                                                <a href="{{ URL::route('user.userprofile', [$user->username]) }}" ><span class="glyphicon glyphicon-user" aria-hidden="true"></span></a>
+                                            </td>
+                                            <td data-title="Verwijder">
+                                                <a href="{{ URL::route('user.delete', [$user->username]) }}" >
+                                                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                                                </a>
                                             </td>
                                         </tr>
                                     @endforeach
